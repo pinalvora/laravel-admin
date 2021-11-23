@@ -1,0 +1,40 @@
+
+Deprecated: The each() function is deprecated. This message will be suppressed on further calls in C:\Users\pvora\AppData\Roaming\Sublime Text\Packages\PHPTools\php.tools\codeFormatter.php on line 54
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateJobBatchesTable extends Migration {
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up() {
+		Schema::create('job_batches', function (Blueprint $table) {
+				$table->id();
+				$table->string('name');
+				$table->string('total_jobs');
+				$table->string('pending_jobs');
+				$table->string('failed_jobs');
+				$table->unsignedBigInteger('failed_job_ids');
+				$table->string('options');
+				$table->string('cancelled_at');
+				$table->string('finished_at');
+				$table->timestamps();
+
+				$table->foreign('failed_job_ids')->references('id')->on('failed_jobs')->onDelete('cascade');
+			});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down() {
+		Schema::dropIfExists('job_batches');
+	}
+}

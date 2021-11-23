@@ -1,0 +1,20 @@
+
+Deprecated: The each() function is deprecated. This message will be suppressed on further calls in C:\Users\pvora\AppData\Roaming\Sublime Text\Packages\PHPTools\php.tools\codeFormatter.php on line 54
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class FileUpload extends Model {
+	use HasFactory;
+
+	protected $table = "files";
+
+	protected $fillable = ['name', 'site_id', 'status', 'date_time'];
+
+	public function getData() {
+		return static ::orderBy('id', 'desc')->where('status', 1)->get();
+	}
+}

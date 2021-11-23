@@ -1,0 +1,30 @@
+
+Deprecated: The each() function is deprecated. This message will be suppressed on further calls in C:\Users\pvora\AppData\Roaming\Sublime Text\Packages\PHPTools\php.tools\codeFormatter.php on line 54
+<?php
+
+namespace App\Models;
+
+use App\Models\SerialNumbersLogs;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class SerialNumber extends Model {
+	use HasFactory;
+
+	protected $table = "serial_numbers_tbl";
+
+	//protected $fillable = ['serial_number','is_validated','validate_count','validated_on','created_on','site_id','status'];
+
+	protected $guarded = [];
+
+	public $timestamps = false;
+
+	public function getData() {
+		//return static::offset(0)->limit(1000)->get();
+		//return static::all();
+	}
+
+	public function serialNumberLogs() {
+		return $this->hasMany(SerialNumbersLogs::class );
+	}
+}

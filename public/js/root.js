@@ -1,0 +1,1 @@
+var SITE_URL = "https://sites.local/laravel-admin/";

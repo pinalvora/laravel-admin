@@ -1,0 +1,40 @@
+
+Deprecated: The each() function is deprecated. This message will be suppressed on further calls in C:\Users\pvora\AppData\Roaming\Sublime Text\Packages\PHPTools\php.tools\codeFormatter.php on line 54
+<?php
+
+namespace App\Jobs;
+
+use App\Mail\QueueEmail;
+use Illuminate\Bus\Queueable;
+
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Mail;
+
+class QueueJob implements ShouldQueue {
+	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+	protected $email_list;
+
+	/**
+	 * Create a new job instance.
+	 *
+	 * @return void
+	 */
+	public function __construct($email_list) {
+		dd("gdfgd");
+		$this->email_list = $email_list;
+	}
+
+	/**
+	 * Execute the job.
+	 *
+	 * @return void
+	 */
+	public function handle() {
+		$email = new QueueEmail();
+		Mail::to($this->email_list['email'])->send($email);
+	}
+}
